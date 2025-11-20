@@ -17,7 +17,7 @@ Plugin 'puremourning/vimspector'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'airblade/vim-gitgutter'
-Plugin 'itchyny/lightline.vim'
+"Plugin 'itchyny/lightline.vim'
 
 Plugin 'arzg/vim-colors-xcode'
 
@@ -49,10 +49,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 let g:ycm_autoclose_preview_window_after_completion=1
 
 " lightline status bar wasn't showing so add this
-set laststatus=2
+"set laststatus=2
 
 " using lightline, so the -- INSERT -- is unnecessary
-set noshowmode 
+"set noshowmode 
 
 " Map ctrl-f to :Rg (fzf)
 nmap <C-F> :exec("Rg")<CR>
@@ -86,7 +86,9 @@ set shiftwidth=4
 set smartindent
 " set nowrap
 set number
-set relativenumber
+" set relativenumber
+set incsearch
+set showcmd
 
 " use ctags to jump to the definition of the current word under the cursor
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

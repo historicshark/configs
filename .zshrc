@@ -122,9 +122,6 @@ function backup() {
     cd -
 }
 
-# search python project
-function search() { grep -r -n --ignore-case --exclude={tags,\*.swp} --exclude-dir=__pycache__ $1 $2; }
-
 # view size of stuff
 function dusort() { du -h -d $2 -L $1 | sort -h; }
 
@@ -145,8 +142,23 @@ function count() {
     fi
 }
 
-function unzipd() {
+function untar() {
     folder="${1%.zip}"
     echo "${folder}"
-    unzip "$1" -d "${folder}"
+    mkdir -p "${folder}"
+    tar -xvf "$1" -C "${folder}"
+}
+
+# kid3 cli
+# $1: folder $2: Genre
+function album_genre() {
+    kid3-cli -c "set comment ''" "${1}/*.mp3" -c "set Genre ${2}"
+}
+
+# 1: zip 2: genre
+function mp3_zip() {
+    folder="${1%.zip}"
+    mkdir -p "${folder}"
+    tar -xvf "$1" -C "${folder}"
+    kid3-cli -c "set comment ''" "${folder}/*.mp3" -c "set Genre ${2}"
 }

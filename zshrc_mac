@@ -42,6 +42,7 @@ ZSH_THEME="ys"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
+setopt extendedglob
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -123,7 +124,7 @@ function backup() {
 }
 
 # view size of stuff
-function dusort() { du -h -d $2 -L $1 | sort -h; }
+function dusort() { du -h -d $2 $1 | sort -h; }
 
 # count number of files recursively
 function count() {
@@ -160,5 +161,15 @@ function mp3_zip() {
     folder="${1%.zip}"
     mkdir -p "${folder}"
     tar -xvf "$1" -C "${folder}"
-    kid3-cli -c "set comment ''" "${folder}/*.mp3" -c "set Genre ${2}"
+    echo "Genre = ${2}"
+    kid3-cli -c "set comment ''" "${folder}/*.mp3" -c "set Genre \"${2}\""
+}
+
+alias remove_accents='~/Music/remove_accents.py'
+function find_accents() {
+    find "$1" -print0 | LC_ALL=C grep -azv '^[ -~]*$' | sed 's/\.\//\n/g'
+}
+
+function weather() {
+    curl "wttr.in/${1}?u"
 }

@@ -89,6 +89,7 @@ set number
 " set relativenumber
 set incsearch
 set showcmd
+set mouse=n
 
 " use ctags to jump to the definition of the current word under the cursor
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

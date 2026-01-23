@@ -119,7 +119,7 @@ source <(fzf --zsh)
 # tar backup
 function backup() { 
     cd
-    tar cfL - Documents Music Pictures budget | pigz > backups/backup_$(date -I).tar.gz
+    tar cfL - Documents Music Pictures budget configs | pigz > backups/backup_$(date -I).tar.gz
     cd -
 }
 

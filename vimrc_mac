@@ -11,7 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Bundle 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'puremourning/vimspector'
 Plugin 'junegunn/fzf'
@@ -38,8 +38,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 colorscheme xcodedarkhc
+set encoding=utf-8
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " Start NERDTree when Vim is started without file arguments.
 " autocmd StdinReadPre * let s:std_in=1
@@ -67,7 +68,7 @@ nmap <F9> <Plug>VimspectorToggleBreakpoint
 nmap <F8> <Plug>VimspectorRunToCursor
 nmap <F10> <Plug>VimspectorStepOver
 nmap <F11> <Plug>VimspectorStepInto
-nmap <F12> <Plug>VimspectorStopOut
+nmap <F12> <Plug>VimspectorStepOut
 nmap <F1> :VimspectorReset<CR>
 " let g:vimspector_enable_mappings = 'HUMAN'
 " packadd! vimspector
@@ -86,7 +87,7 @@ set shiftwidth=4
 set smartindent
 " set nowrap
 set number
-" set relativenumber
+set relativenumber
 set incsearch
 set showcmd
 set mouse=n
@@ -99,4 +100,3 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-

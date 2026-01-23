@@ -112,6 +112,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # fzf
 source <(fzf --zsh)
+bindkey -r '^T'
+bindkey '^F' fzf-file-widget
 
 # tar backup
 function backup() { 
@@ -155,4 +157,9 @@ function album_genre() {
 
 function weather() {
     curl "wttr.in/${1}?u"
+}
+
+function rsync_music() {
+    rsync -avh --progress --remove-source-files "$1" mac:/Users/historicshark/Music
+    echo "Moved \"$1\" to \"mac:/Users/historicshark/Music\""
 }

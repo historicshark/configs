@@ -10,8 +10,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
+"Bundle 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'puremourning/vimspector'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -39,7 +39,7 @@ filetype plugin indent on    " required
 
 colorscheme xcodedarkhc
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " Start NERDTree when Vim is started without file arguments.
 " autocmd StdinReadPre * let s:std_in=1
@@ -89,7 +89,7 @@ set number
 " set relativenumber
 set incsearch
 set showcmd
-set mouse=n
+"set mouse=n
 
 " use ctags to jump to the definition of the current word under the cursor
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

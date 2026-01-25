@@ -72,6 +72,41 @@ nmap <F1> :VimspectorReset<CR>
 " let g:vimspector_enable_mappings = 'HUMAN'
 " packadd! vimspector
 
+set complete=t,.,w,b,u
+
+function! SmartComplete()
+  let l:prefix = expand('<cword>')
+  let l:tags = systemlist('if [[ -e tags ]]; then cut -f1 tags; fi')
+
+  if !empty(l:tags)
+    call fzf#run({
+      \ 'source': l:tags,
+      \ 'options': '--query=' . l:prefix,
+      \ 'sink': function('s:InsertWord'),
+      \ 'down': '40%',
+      \ })
+  else
+    call s:RGComplete(l:prefix)
+  endif
+endfunction
+
+function! s:RGComplete(prefix)
+  call fzf#run({
+    \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
+    \ 'options': '--query=' . a:prefix,
+    \ 'sink': function('s:InsertWord'),
+    \ 'down': '40%',
+    \ })
+endfunction
+
+function! s:InsertWord(line)
+  let l:word = split(a:line, ':')[-1]
+  execute "normal! ciw" . l:word
+  call feedkeys("a", 'n')
+endfunction
+
+inoremap <C-N> <Esc>:call SmartComplete()<CR>
+
 " Other configuration
 syntax on
 set ruler
@@ -86,10 +121,11 @@ set shiftwidth=4
 set smartindent
 " set nowrap
 set number
-" set relativenumber
+set relativenumber
 set incsearch
 set showcmd
 "set mouse=n
+set scrolloff=3
 
 " use ctags to jump to the definition of the current word under the cursor
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

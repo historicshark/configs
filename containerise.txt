@@ -1,0 +1,20 @@
+calendar.google.com , google
+digitalbanking.associatedbank.com , Banking
+keep.google.com , google
+lionpathsupport.psu.edu , psu
+livewell.aah.org , health
+mail.google.com , google
+music.amazon.com , Shopping
+outlook.office.com , psu
+photos.google.com , google
+www.amazon.com , Shopping
+www.facebook.com , instagram
+www.gap.com , Shopping
+www.google.com , google
+www.instagram.com , instagram
+www.myworkday.com , psu
+www.pinterest.com , junk
+www.reddit.com , reddit
+www.runningwarehouse.com , Shopping
+www.target.com , Shopping
+

@@ -115,6 +115,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # fzf
 source <(fzf --zsh)
+bindkey -r '^T'
+bindkey '^F' fzf-file-widget
 
 # tar backup
 function backup() { 

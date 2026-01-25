@@ -10,19 +10,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'Valloric/YouCompleteMe'
-"Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'puremourning/vimspector'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-"Plugin 'airblade/vim-gitgutter'
-"Plugin 'itchyny/lightline.vim'
-
 Plugin 'arzg/vim-colors-xcode'
 
 " All of your Plugins must be added before the following line
-" Plugin 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -40,24 +34,47 @@ filetype plugin indent on    " required
 colorscheme xcodedarkhc
 set encoding=utf-8
 
-"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-" Start NERDTree when Vim is started without file arguments.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
 " you complete me plugin?
 let g:ycm_autoclose_preview_window_after_completion=1
-
-" lightline status bar wasn't showing so add this
-"set laststatus=2
-
-" using lightline, so the -- INSERT -- is unnecessary
-"set noshowmode 
 
 " Map ctrl-f to :Rg (fzf)
 nmap <C-F> :exec("Rg")<CR>
 nmap <C-\> :exec("Rg ".expand("<cword>"))<CR>
+
+set complete=t,.,w,b,u
+
+function! SmartComplete()
+  let l:prefix = expand('<cword>')
+  let l:tags = systemlist('if [[ -e tags ]]; then cut -f1 tags; fi')
+
+  if !empty(l:tags)
+    call fzf#run({
+      \ 'source': l:tags,
+      \ 'options': '--query=' . l:prefix,
+      \ 'sink': function('s:InsertWord'),
+      \ 'down': '40%',
+      \ })
+  else
+    call s:RGComplete(l:prefix)
+  endif
+endfunction
+
+function! s:RGComplete(prefix)
+  call fzf#run({
+    \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
+    \ 'options': '--query=' . a:prefix,
+    \ 'sink': function('s:InsertWord'),
+    \ 'down': '40%',
+    \ })
+endfunction
+
+function! s:InsertWord(line)
+  let l:word = split(a:line, ':')[-1]
+  execute "normal! ciw" . l:word
+  call feedkeys("a", 'n')
+endfunction
+
+inoremap <C-N> <Esc>:call SmartComplete()<CR>
 
 " Vimspector
 let g:vimspector_base_dir='/Users/historicshark/.vim/bundle/vimspector'
@@ -90,10 +107,8 @@ set number
 set relativenumber
 set incsearch
 set showcmd
-set mouse=n
-
-" use ctags to jump to the definition of the current word under the cursor
-"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"set mouse=n
+set scrolloff=3
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>

@@ -2,15 +2,37 @@
     "layer": "top",
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["battery", "clock"],
+    "modules-right": ["backlight", "wireplumber", "custom/battery", "clock"],
     "hyprland/window": {
         "max-length": 50
     },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+    "hyprland/workspaces": {
+        "format": "{name} {icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "custom/battery": {
+        "exec": "~/.config/waybar/scripts/battery.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": " {} "
     },
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format": " {:%H:%M} ",
+        "format-alt": "{:%a, %d. %b  %H:%M} "
+    },
+    "wireplumber": {
+        "format": " {volume}%  ",
+        "format-muted": "  ",
+        "on-click": "helvum",
+        "max-volume": 150,
+        "scroll-step": 0.2
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": " {percent}% {icon} ",
+        "format-icons": ["󰖨", ""]
     }
 }

@@ -48,3 +48,10 @@ alias ip='ip --color=auto'
 source <(fzf --zsh)
 bindkey -r '^T'
 bindkey '^F' fzf-file-widget
+
+# because less doesn't work in kitty
+export MANPAGER='vim -M +MANPAGER -'
+
+function weather() {
+    curl "wttr.in/${1}?u"
+}

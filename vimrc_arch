@@ -75,34 +75,70 @@ nmap <F1> :VimspectorReset<CR>
 set complete=t,.,w,b,u
 
 function! SmartComplete()
-  let l:prefix = expand('<cword>')
-  let l:tags = systemlist('if [[ -e tags ]]; then cut -f1 tags; fi')
+    let l:prefix = expand('<cword>')
+    let l:tags = systemlist('if [[ -e tags ]]; then cut -f1 tags; fi')
 
-  if !empty(l:tags)
+    if !empty(l:tags)
+        call fzf#run({
+            \ 'source': l:tags,
+            \ 'options': '--query=' . l:prefix,
+            \ 'sink': function('s:InsertWord'),
+            \ 'down': '40%',
+            \ })
+        return
+    endif
+
+    let l:bufwords = s:BufferWords()
+    if !empty(l:bufwords)
+        call fzf#run({
+            \ 'source': l:bufwords,
+            \ 'options': '--query=' . l:prefix,
+            \ 'sink': function('s:InsertWord'),
+            \ 'down': '40%',
+            \ })
+        return
+    endif
+
     call fzf#run({
-      \ 'source': l:tags,
-      \ 'options': '--query=' . l:prefix,
-      \ 'sink': function('s:InsertWord'),
-      \ 'down': '40%',
-      \ })
-  else
-    call s:RGComplete(l:prefix)
-  endif
+        \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
+        \ 'options': '--query=' . a:prefix,
+        \ 'sink': function('s:InsertWord'),
+        \ 'down': '40%',
+        \ })
+    "else
+    "  call s:RGComplete(l:prefix)
+    "endif
+endfunction
+
+function! s:BufferWords()
+    let l:words = {}
+
+    for l:buf in getbufinfo({'bufloaded': 1})
+        for l:line in getbufline(l:buf.bufnr, 1, '$')
+            for l:word in split(l:line, '\W\+')
+                if l:word =~# '^[A-Za-z_][A-Za-z0-9_]*$'
+                    let l:words[l:word] = 1
+                endif
+            endfor
+        endfor
+    endfor
+
+    return keys(l:words)
 endfunction
 
 function! s:RGComplete(prefix)
-  call fzf#run({
-    \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
-    \ 'options': '--query=' . a:prefix,
-    \ 'sink': function('s:InsertWord'),
-    \ 'down': '40%',
-    \ })
+    call fzf#run({
+        \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
+        \ 'options': '--query=' . a:prefix,
+        \ 'sink': function('s:InsertWord'),
+        \ 'down': '40%',
+        \ })
 endfunction
 
 function! s:InsertWord(line)
-  let l:word = split(a:line, ':')[-1]
-  execute "normal! ciw" . l:word
-  call feedkeys("a", 'n')
+    let l:word = split(a:line, ':')[-1]
+    execute "normal! ciw" . l:word
+    call feedkeys("a", 'n')
 endfunction
 
 inoremap <C-N> <Esc>:call SmartComplete()<CR>

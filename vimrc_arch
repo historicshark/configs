@@ -37,6 +37,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+let mapleader = " "
+
 colorscheme xcodedarkhc
 
 " let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -135,6 +137,7 @@ function! s:RGComplete(prefix)
         \ })
 endfunction
 
+
 function! s:InsertWord(line)
     let l:word = split(a:line, ':')[-1]
     execute "normal! ciw" . l:word
@@ -162,6 +165,19 @@ set incsearch
 set showcmd
 "set mouse=n
 set scrolloff=3
+
+" visual move lines up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" copy paste
+vnoremap <leader>y :w !wl-copy <CR> <CR> '<
+"nnoremap <leader>p :r !wl-paste <CR>
+nnoremap <leader>p i<C-r>=trim(system('wl-paste'))<CR><Esc>
+
+" quick fix navigation
+nnoremap <leader>j :cnext<CR>zz
+nnoremap <leader>k :cprev<CR>zz
 
 " use ctags to jump to the definition of the current word under the cursor
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

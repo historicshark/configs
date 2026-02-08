@@ -61,7 +61,13 @@ else
 endif
 
 " Vimspector
-let g:vimspector_base_dir='/Users/historicshark/.vim/bundle/vimspector'
+if g:os =~ 'DARWIN'
+    let g:vimspector_base_dir='/Users/historicshark/.vim/bundle/vimspector'
+endif
+if g:os =~ 'LINUX'
+    let g:vimspector_base_dir='/home/historicshark/.vim/bundle/vimspector'
+endif
+
 nmap <F5> <Plug>VimspectorContinue
 nmap <F3> <Plug>VimspectorStop
 nmap <F4> <Plug>VimspectorRestart
@@ -72,4 +78,3 @@ nmap <F11> <Plug>VimspectorStepInto
 nmap <F12> <Plug>VimspectorStepOut
 nmap <F1> :VimspectorReset<CR>
 " let g:vimspector_enable_mappings = 'HUMAN'
-" packadd! vimspector

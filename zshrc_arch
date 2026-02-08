@@ -14,8 +14,10 @@ compinit
 # End of lines added by compinstall
 
 fpath=(/home/historicshark/.config/zsh/ $fpath)
-autoload -Uz prompt_purification_setup;
-prompt_purification_setup
+#autoload -Uz prompt_purification_setup;
+#prompt_purification_setup
+PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+
 
 setopt AUTO_MENU
 setopt MENU_COMPLETE

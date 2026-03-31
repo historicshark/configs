@@ -18,7 +18,7 @@ set number
 set relativenumber
 set incsearch
 set showcmd
-"set mouse=n
+"set mouse
 set scrolloff=3
 set complete=t,.,w,b,u
 

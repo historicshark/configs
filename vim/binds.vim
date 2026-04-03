@@ -9,7 +9,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <leader>se :Sexplore<CR>
-nnoremap <leader>ve :!Vexplore<CR>
+nnoremap <leader>ve :Vexplore!<CR>
 nnoremap <leader>te :Texplore<CR>
 
 " copy paste

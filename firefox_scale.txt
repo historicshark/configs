@@ -1,0 +1,1 @@
+in about:config, change layout.css.devPixelsPerPx from -1.0 to 1.25 (or whatever desired scaling)

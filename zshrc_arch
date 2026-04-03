@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt autocd extendedglob nomatch
 unsetopt beep
 bindkey -v
@@ -14,8 +14,10 @@ compinit
 # End of lines added by compinstall
 
 fpath=(/home/historicshark/.config/zsh/ $fpath)
-autoload -Uz prompt_purification_setup;
-prompt_purification_setup
+#autoload -Uz prompt_purification_setup;
+#prompt_purification_setup
+PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+
 
 setopt AUTO_MENU
 setopt MENU_COMPLETE
@@ -38,6 +40,8 @@ alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
 alias lsa='ls -lah'
+alias ...='../..'
+alias ....='../../..'
 
 # colors
 alias grep='grep --color=auto'

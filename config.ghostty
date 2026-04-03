@@ -1,0 +1,9 @@
+theme = Xcode Dark hc
+
+keybind = alt+n=new_window
+keybind = alt+w=close_tab:this
+keybind = alt+t=new_tab
+keybind = alt+shift+[=previous_tab
+keybind = alt+shift+]=next_tab
+keybind = alt+c=copy_to_clipboard:mixed
+keybind = alt+v=paste_from_clipboard

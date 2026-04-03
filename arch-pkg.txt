@@ -9,6 +9,7 @@ ex-vi-compat
 firefox
 fzf
 gdm
+ghostty
 git
 gnome-backgrounds
 gnome-calculator
@@ -68,7 +69,6 @@ nautilus
 networkmanager
 orca
 papers
-ptyxis
 pyenv
 ripgrep
 rsync

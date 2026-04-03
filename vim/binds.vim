@@ -26,6 +26,10 @@ endif
 nnoremap <leader>j :cnext<CR>zz
 nnoremap <leader>k :cprev<CR>zz
 
+" arg list navigation
+nnoremap <Up> :prev<CR>
+nnoremap <Down> :next<CR>
+
 " map ctrl-b to make
 nnoremap <C-B> :make! %<CR><CR> :cope<CR>
 
@@ -35,7 +39,24 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-nnoremap <leader>w :update<CR>
+" shortcut to save
+nnoremap ;w :update<CR>
 
+" diff
 nnoremap <leader>dt :windo diffthis<CR>
 nnoremap <leader>do :windo diffoff<CR>
+
+" split line with K (opposite of J)
+nnoremap K i<CR><Esc>
+
+" toggle things
+nnoremap <leader>3 :set relativenumber!<CR>
+nnoremap <leader>h :set hlsearch!<CR>
+
+" Bring results to midscreen
+nnoremap n nzz
+nnoremap N Nzz
+
+" move through tabs
+nnoremap <tab> gt
+nnoremap <S-tab> gT

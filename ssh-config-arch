@@ -1,0 +1,4 @@
+Host mac
+    HostName 10.0.0.203
+    User historicshark
+    SetEnv TERM=xterm-256color

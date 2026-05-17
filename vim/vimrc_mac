@@ -16,6 +16,7 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'arzg/vim-colors-xcode'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,10 +43,12 @@ let g:has_rg = executable('rg')
 
 source ~/configs/vim/settings.vim
 source ~/configs/vim/binds.vim
-source ~/configs/vim/smart_complete.vim
+"source ~/configs/vim/smart_complete.vim
 
 try
-    colorscheme xcodedarkhc
+    "colorscheme xcodedarkhc
+    autocmd vimenter * ++nested colorscheme gruvbox
+    set background=dark
 catch
     colorscheme koehler
 endtry
@@ -79,3 +82,29 @@ nmap <F11> <Plug>VimspectorStepInto
 nmap <F12> <Plug>VimspectorStepOut
 nmap <F1> :VimspectorReset<CR>
 " let g:vimspector_enable_mappings = 'HUMAN'
+
+" comment function
+function! ToggleComment(char)
+    let l:line = getline(".")
+    if l:line =~ '^\s*' . a:char
+        call setline(line("."), substitute(l:line, '^\(\s*\)\(' . a:char . '\+\)\(.\+\)$', '\1\3', ''))
+    else
+        call setline(line("."), a:char . l:line)
+    endif
+endfunction
+
+augroup PythonKeymaps
+    autocmd!
+    autocmd FileType python nnoremap <leader>/ :call ToggleComment("#")<CR>
+    autocmd FileType python vnoremap <leader>/ :call ToggleComment("#")<CR>
+augroup END
+augroup VimKeymaps
+    autocmd!
+    autocmd FileType vim nnoremap <leader>/ :call ToggleComment('"')<CR>
+    autocmd FileType vim vnoremap <leader>/ :call ToggleComment('"')<CR>
+augroup END
+augroup CKeymaps
+    autocmd!
+    autocmd FileType c,cpp nnoremap <leader>/ :call ToggleComment('//')<CR>
+    autocmd FileType c,cpp vnoremap <leader>/ :call ToggleComment('//')<CR>
+augroup END

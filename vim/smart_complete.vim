@@ -75,5 +75,5 @@ if has_fzf && has_rg
         call feedkeys("a", 'n')
     endfunction
 
-    inoremap <C-N> <Esc>:call SmartComplete()<CR>
+    "inoremap <C-N> <Esc>:call SmartComplete()<CR>
 endif

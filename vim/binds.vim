@@ -58,5 +58,5 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " move through tabs
-nnoremap <tab> gt
-nnoremap <S-tab> gT
+nnoremap <S-tab> gt
+"nnoremap <S-tab> gT

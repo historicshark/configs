@@ -60,3 +60,29 @@ nnoremap N Nzz
 " move through tabs
 nnoremap <S-tab> gt
 "nnoremap <S-tab> gT
+" surround
+nnoremap <leader>s' `>a'<Esc>`<i'<Esc>
+nnoremap <leader>s" `>a"<Esc>`<i"<Esc>
+nnoremap <leader>s( `>a)<Esc>`<i(<Esc>
+nnoremap <leader>s) `>a)<Esc>`<i(<Esc>
+nnoremap <leader>s{ `>a}<Esc>`<i{<Esc>
+nnoremap <leader>s} `>a}<Esc>`<i{<Esc>
+nnoremap <leader>s[ `>a[<Esc>`<i[<Esc>
+nnoremap <leader>s] `>a[<Esc>`<i[<Esc>
+
+vnoremap <leader>s' `>a'<Esc>`<i'<Esc>
+vnoremap <leader>s" `>a"<Esc>`<i"<Esc>
+vnoremap <leader>s( `>a)<Esc>`<i(<Esc>
+vnoremap <leader>s) `>a)<Esc>`<i(<Esc>
+vnoremap <leader>s{ `>a}<Esc>`<i{<Esc>
+vnoremap <leader>s} `>a}<Esc>`<i{<Esc>
+vnoremap <leader>s[ `>a[<Esc>`<i[<Esc>
+vnoremap <leader>s] `>a[<Esc>`<i[<Esc>
+
+" alternate file
+nnoremap <leader>a :e #<CR>
+
+" set pwd
+nnoremap <leader>ch :cd %:h<CR>
+nnoremap <leader>th :tcd %:h<CR>
+nnoremap <leader>lh :lcd %:h<CR>

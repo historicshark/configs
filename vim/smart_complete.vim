@@ -21,7 +21,6 @@ if has_fzf && has_rg
 
         let l:bufwords = s:BufferWords(l:prefix)
         if !empty(l:bufwords)
-            echo 'buffer complete'
             call fzf#run({
                 \ 'source': l:bufwords,
                 \ 'options': '--query=' . l:prefix,
@@ -31,7 +30,6 @@ if has_fzf && has_rg
             return
         endif
 
-        echo 'rg complete'
         call fzf#run({
             \ 'source': 'rg -o "\b[A-Za-z_][A-Za-z0-9_]*\b" | sort -u',
             \ 'options': '--query=' . l:prefix,

@@ -1,4 +1,4 @@
-theme = Xcode Dark hc
+theme = Gruvbox Dark Hard
 
 keybind = alt+n=new_window
 keybind = alt+w=close_tab:this

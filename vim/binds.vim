@@ -14,11 +14,11 @@ nnoremap <leader>te :Texplore<CR>
 
 " copy paste
 if g:os =~ 'DARWIN'
-    vnoremap <leader>y :w !pbcopy <CR> <CR> '<
+    vnoremap <leader>y :w !pbcopy <CR> <CR> `<
     nnoremap <leader>p i<C-r>=trim(system('pbpaste'))<CR><Esc>
 endif
 if g:os =~ 'LINUX'
-    vnoremap <leader>y :w !wl-copy <CR> <CR> '<
+    vnoremap <leader>y :w !wl-copy <CR> <CR> `<
     nnoremap <leader>p i<C-r>=trim(system('wl-paste'))<CR><Esc>
 endif
 
@@ -52,14 +52,15 @@ nnoremap K i<CR><Esc>
 " toggle things
 nnoremap <leader>3 :set relativenumber!<CR>
 nnoremap <leader>h :set hlsearch!<CR>
+nnoremap <leader>w :set wrap!<CR>
 
 " Bring results to midscreen
 nnoremap n nzz
 nnoremap N Nzz
 
 " move through tabs
-nnoremap <tab> gt
-nnoremap <S-tab> gT
+nnoremap <S-tab> gt
+"nnoremap <S-tab> gT
 
 " surround
 nnoremap <leader>s' `>a'<Esc>`<i'<Esc>

@@ -4,7 +4,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt autocd extendedglob nomatch
 unsetopt beep
-#bindkey -v
+bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/historicshark/.zshrc'
@@ -36,10 +36,9 @@ bindkey "\e[B" history-beginning-search-forward
 
 # The most important aliases ever (the only thing I borrowed from OMZ)
 alias ls='ls --color=auto'
-alias l='ls -lah'
-alias la='ls -lAh'
-alias ll='ls -lh'
-alias lsa='ls -lah'
+alias ll='ls -lAh'
+alias la='ls -lah'
+alias l='ls -lh'
 alias ...='../..'
 alias ....='../../..'
 
@@ -54,11 +53,9 @@ bindkey -r '^T'
 bindkey '^F' fzf-file-widget
 
 # because less doesn't work in kitty
-export MANPAGER='vim -M +MANPAGER -'
-
-function weather() {
-    curl "wttr.in/${1}?u"
-}
+#export MANPAGER='vim -M +MANPAGER -'
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
+
+export PATH="$PATH:/home/historicshark/.local/bin"
